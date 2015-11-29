@@ -5,35 +5,48 @@
 <body>
   <div class="container">
     <header>
-      <h1>CATS Pending count ({{incompleteCount}})</h1>
+      <h1><p align = "center">CATS</p></h1>
+      <p align = "right">{{> loginButtons}}</p>
+      {{#if currentUser}}
+      <h3>Pending count ({{incompleteCount}})</h3>
       <label class="hide-completed">
         <input type="checkbox" checked="{{hideCompleted}}" />
         Hide Completed Tasks
       </label>
 
-      {{> loginButtons}}
-      {{#if currentUser}}
         <form class="new-task">
           <input type="text" name="text" placeholder="Type to add new tasks" />
         </form>
       {{/if}}
     </header>
 
-    <ul>
+    <table border=1>
+    <th>Task</th><th>Creator</th><th>Expected time</th><th>Actual time</th><th>Status</th>
+    <!--<ul>-->
       {{#each tasks}}
+      {{#if currentUser}}
+        <tr>
         {{> task}}
+        </tr>
+      {{/if}}
       {{/each}}
-    </ul>
+    <!--</ul>-->
+    </table>
 
   </div>
 </body>
 
 <template name="task">
-  <li class="{{#if checked}}checked{{/if}}">
+  <td>{{text}}</td>
+  <td>{{username}}TBD</td>
+  <td>TBD</td>
+  <td>TBD</td>
+  <td><input type="checkbox" checked="{{checked}}" class="toggle-checked" /></td>
+  <!--<li class="{{#if checked}}checked{{/if}}">
     <button class="delete">&times;</button>
     <input type="checkbox" checked="{{checked}}" class="toggle-checked" />
     <span class="text"><strong>{{username}}</strong> - {{text}}</span>
-  </li>
+  </li>-->
 </template>
 
 
